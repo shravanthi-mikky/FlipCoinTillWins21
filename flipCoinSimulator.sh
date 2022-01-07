@@ -1,4 +1,4 @@
-
+#! /bin/bash -x
 echo " Welcome to Flip-Coin Simulator "
 h=0
 t=0
@@ -20,10 +20,20 @@ then
 elif [[ $h -eq $t ]]
 then
     echo "tie "
+    while [ $head -le 3 ] && [ $tail -le 3 ]
+    do
+        flip=$((($RANDOM%2)+1))
+        if [ $flip -eq 1 ]
+        then
+                echo "head"
+                ((h++))
+        else
+                echo "tail"
+                ((t++))
+        fi
+    done
 elif [[ $t -gt $h ]]
 then
         tail=$(( $t - $h ))
         echo " Tails are Maximum wins " $tail
 fi
-
-
